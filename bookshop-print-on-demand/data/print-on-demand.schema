@@ -1,0 +1,60 @@
+{
+    "schema": {
+        "structures": [
+            {
+                "name": "BOOKSHOP_PRINT_BOOK_REQUESTS",
+                "type": "TABLE",
+                "columns": [
+                    {
+                        "name": "ID",
+                        "type": "INTEGER",
+                        "length": 0,
+                        "nullable": true,
+                        "primaryKey": "true",
+                        "identity": "true",
+                        "unique": false,
+                        "defaultValue": null,
+                        "precision": null,
+                        "scale": null
+                    },
+                    {
+                        "name": "TITLE",
+                        "type": "VARCHAR",
+                        "length": "32",
+                        "nullable": true,
+                        "primaryKey": false,
+                        "identity": false,
+                        "unique": false,
+                        "defaultValue": null,
+                        "precision": null,
+                        "scale": null
+                    },
+                    {
+                        "name": "ADDRESS",
+                        "type": "VARCHAR",
+                        "length": "64",
+                        "nullable": true,
+                        "primaryKey": false,
+                        "identity": false,
+                        "unique": false,
+                        "defaultValue": null,
+                        "precision": null,
+                        "scale": null
+                    },
+                    {
+                        "name": "STATUS",
+                        "type": "VARCHAR",
+                        "length": "32",
+                        "nullable": true,
+                        "primaryKey": false,
+                        "identity": false,
+                        "unique": false,
+                        "defaultValue": null,
+                        "precision": null,
+                        "scale": null
+                    }
+                ]
+            }
+        ]
+    }
+}

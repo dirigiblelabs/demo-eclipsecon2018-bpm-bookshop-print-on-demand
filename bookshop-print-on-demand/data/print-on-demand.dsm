@@ -1,0 +1,11 @@
+<schema>
+ <structures>
+  <structure name="BOOKSHOP_PRINT_BOOK_REQUESTS" type="TABLE">
+    <column name="ID" type="INTEGER" primaryKey="true" identity="true"></column>
+    <column name="TITLE" type="VARCHAR" length="32"></column>
+    <column name="ADDRESS" type="VARCHAR" length="64"></column>
+    <column name="STATUS" type="VARCHAR" length="32"></column>
+  </structure>
+ </structures>
+ <mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/><mxCell id="2" style="table" parent="1" vertex="1"><Table name="BOOKSHOP_PRINT_BOOK_REQUESTS" type="TABLE" as="value"/><mxGeometry x="80" y="90" width="250" height="132" as="geometry"><mxRectangle width="200" height="28" as="alternateBounds"/></mxGeometry></mxCell><mxCell id="3" parent="2" vertex="1" connectable="0"><Column name="ID" type="INTEGER" columnLength="0" primaryKey="true" autoIncrement="true" as="value"/><mxGeometry y="28" width="250" height="26" as="geometry"/></mxCell><mxCell id="4" parent="2" vertex="1" connectable="0"><Column name="TITLE" columnLength="32" as="value"/><mxGeometry y="54" width="250" height="26" as="geometry"/></mxCell><mxCell id="5" parent="2" vertex="1" connectable="0"><Column name="ADDRESS" columnLength="64" as="value"/><mxGeometry y="80" width="250" height="26" as="geometry"/></mxCell><mxCell id="6" parent="2" vertex="1" connectable="0"><Column name="STATUS" columnLength="32" as="value"/><mxGeometry y="106" width="250" height="26" as="geometry"/></mxCell></root></mxGraphModel>
+</schema>

@@ -3,17 +3,17 @@
   <process id="bookshop-print-on-demand" name="Print on Demand" isExecutable="true">
     <startEvent id="sid-3334E861-7999-4B89-B8B0-11724BA17A3E"/>
     <endEvent id="sid-70B488C1-384A-4E19-8091-1B12D1AEC7FD"/>
-    <serviceTask id="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED" name="Validate Delivery Address" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
+    <serviceTask id="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED" name="Get Delivery Address" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
       <extensionElements>
         <flowable:field name="handler">
-          <flowable:string><![CDATA[bookshop-print-on-demand/process/validateDeliveryAddress.js]]></flowable:string>
+          <flowable:string><![CDATA[bookshop-print-on-demand/process/tasks/GetDeliveryAddress.js]]></flowable:string>
         </flowable:field>
       </extensionElements>
     </serviceTask>
     <serviceTask id="sid-86B4F4E9-B677-401C-9E60-00EA010EF349" name="Get Title" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
       <extensionElements>
         <flowable:field name="handler">
-          <flowable:string><![CDATA[bookshop-print-on-demand/process/getTitle.js]]></flowable:string>
+          <flowable:string><![CDATA[bookshop-print-on-demand/process/tasks/GetTitle.js]]></flowable:string>
         </flowable:field>
       </extensionElements>
     </serviceTask>
@@ -23,93 +23,111 @@
     <serviceTask id="sid-B33C6715-E9F6-417A-BCF8-C357444219AB" name="Print" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
       <extensionElements>
         <flowable:field name="handler">
-          <flowable:string><![CDATA[bookshop-print-on-demand/process/print.js]]></flowable:string>
+          <flowable:string><![CDATA[bookshop-print-on-demand/process/tasks/Print.js]]></flowable:string>
         </flowable:field>
       </extensionElements>
     </serviceTask>
     <serviceTask id="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5" name="Cancel Printing" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
       <extensionElements>
         <flowable:field name="handler">
-          <flowable:string><![CDATA[bookshop-print-on-demand/process/cancelPrinting.js]]></flowable:string>
+          <flowable:string><![CDATA[bookshop-print-on-demand/process/tasks/CancelPrintingRequest.js]]></flowable:string>
         </flowable:field>
       </extensionElements>
     </serviceTask>
-    <sequenceFlow id="sid-797626AE-B2F6-4C00-ABEE-FB30ADC177E4" sourceRef="sid-3334E861-7999-4B89-B8B0-11724BA17A3E" targetRef="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED"/>
-    <sequenceFlow id="sid-6D8FA2BA-579E-4571-B1DB-917226DCD1B0" name="Invalid Delivery Address" sourceRef="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357" targetRef="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${isValidDeliveryAddress == false}]]></conditionExpression>
-    </sequenceFlow>
-    <sequenceFlow id="sid-CBF6DBDC-7939-4567-8C9D-740410E0CF16" sourceRef="sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41" targetRef="sid-B33C6715-E9F6-417A-BCF8-C357444219AB"/>
     <sequenceFlow id="sid-4D572F76-20B3-45F2-90E5-4B05D55FB148" sourceRef="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357" targetRef="sid-86B4F4E9-B677-401C-9E60-00EA010EF349"/>
-    <sequenceFlow id="sid-148771E1-795F-411A-8D80-9DDF9334A767" sourceRef="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED" targetRef="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357"/>
-    <sequenceFlow id="sid-6EFEF8C9-B188-4EDD-8CA9-FBF62F21335D" name="Title Not Found" sourceRef="sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41" targetRef="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${title == null}]]></conditionExpression>
-    </sequenceFlow>
     <sequenceFlow id="sid-3D27AD32-7989-411E-B5B0-2C8F9162C8D9" name="Book Printed" sourceRef="sid-B33C6715-E9F6-417A-BCF8-C357444219AB" targetRef="sid-70B488C1-384A-4E19-8091-1B12D1AEC7FD"/>
     <sequenceFlow id="sid-F5598F6E-6B76-461E-A080-092E79FFD303" sourceRef="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5" targetRef="sid-70B488C1-384A-4E19-8091-1B12D1AEC7FD"/>
+    <sequenceFlow id="sid-CBF6DBDC-7939-4567-8C9D-740410E0CF16" sourceRef="sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41" targetRef="sid-B33C6715-E9F6-417A-BCF8-C357444219AB"/>
+    <sequenceFlow id="sid-6D8FA2BA-579E-4571-B1DB-917226DCD1B0" name="Delivery Address Not Found" sourceRef="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357" targetRef="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!isValidDeliveryAddress}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="sid-66BD5542-29AB-4AEA-8FDE-104811FC4DDB" name="Title Not Found" sourceRef="sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41" targetRef="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!isValidTitle}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="sid-7A7F4002-F810-41D8-BCD7-D4EFED33FE53" name="Create Printing Request&#xa;" flowable:class="org.eclipse.dirigible.bpm.flowable.DirigibleCallDelegate">
+      <extensionElements>
+        <flowable:field name="handler">
+          <flowable:string><![CDATA[bookshop-print-on-demand/process/tasks/CreatePrintingRequest.js]]></flowable:string>
+        </flowable:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="sid-797626AE-B2F6-4C00-ABEE-FB30ADC177E4" sourceRef="sid-3334E861-7999-4B89-B8B0-11724BA17A3E" targetRef="sid-7A7F4002-F810-41D8-BCD7-D4EFED33FE53"/>
+    <sequenceFlow id="sid-1EECAB02-24A4-43BC-83B5-C17653E10431" sourceRef="sid-7A7F4002-F810-41D8-BCD7-D4EFED33FE53" targetRef="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED"/>
+    <sequenceFlow id="sid-148771E1-795F-411A-8D80-9DDF9334A767" sourceRef="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED" targetRef="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357"/>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_bookshop-print-on-demand">
     <bpmndi:BPMNPlane bpmnElement="bookshop-print-on-demand" id="BPMNPlane_bookshop-print-on-demand">
       <bpmndi:BPMNShape bpmnElement="sid-3334E861-7999-4B89-B8B0-11724BA17A3E" id="BPMNShape_sid-3334E861-7999-4B89-B8B0-11724BA17A3E">
-        <omgdc:Bounds height="30.0" width="30.0" x="105.0" y="77.0"/>
+        <omgdc:Bounds height="30.0" width="30.0" x="90.0" y="77.00000000000003"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-70B488C1-384A-4E19-8091-1B12D1AEC7FD" id="BPMNShape_sid-70B488C1-384A-4E19-8091-1B12D1AEC7FD">
         <omgdc:Bounds height="28.00000000000003" width="28.0" x="685.9999741713216" y="233.33332406150006"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED" id="BPMNShape_sid-F4A6841F-C5C9-409B-944F-5BD8D1BEC3ED">
-        <omgdc:Bounds height="80.0" width="100.0" x="187.0" y="52.0"/>
+        <omgdc:Bounds height="80.00000000000003" width="99.99999999999997" x="164.60905974282517" y="185.1851922106783"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-86B4F4E9-B677-401C-9E60-00EA010EF349" id="BPMNShape_sid-86B4F4E9-B677-401C-9E60-00EA010EF349">
-        <omgdc:Bounds height="80.0" width="100.0" x="420.0" y="52.0"/>
+        <omgdc:Bounds height="80.0" width="100.0" x="420.0" y="45.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357" id="BPMNShape_sid-43F9C22D-2FFC-4C27-BC4A-417E568AD357">
-        <omgdc:Bounds height="39.99999999999997" width="40.0" x="316.6666540834644" y="166.66666004392863"/>
+        <omgdc:Bounds height="40.0" width="40.0" x="315.0" y="205.18519221067834"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41" id="BPMNShape_sid-21F36B17-6937-47A3-B2AB-FE31CE1D1D41">
-        <omgdc:Bounds height="40.0" width="40.0" x="549.9999781449644" y="166.66666004392863"/>
+        <omgdc:Bounds height="40.0" width="40.0" x="540.0" y="165.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-B33C6715-E9F6-417A-BCF8-C357444219AB" id="BPMNShape_sid-B33C6715-E9F6-417A-BCF8-C357444219AB">
-        <omgdc:Bounds height="80.00000000000003" width="100.0" x="649.9999741713216" y="52.00000000000001"/>
+        <omgdc:Bounds height="80.00000000000003" width="100.0" x="649.9999741713216" y="45.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5" id="BPMNShape_sid-C229AFBC-22E7-425F-9B6A-96CB71C467B5">
-        <omgdc:Bounds height="80.0" width="99.99999999999994" x="499.9999801317859" y="349.9999860922501"/>
+        <omgdc:Bounds height="80.0" width="100.0" x="510.0" y="308.6419870177972"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="sid-7A7F4002-F810-41D8-BCD7-D4EFED33FE53" id="BPMNShape_sid-7A7F4002-F810-41D8-BCD7-D4EFED33FE53">
+        <omgdc:Bounds height="79.99999999999997" width="99.99999999999997" x="164.60905974282517" y="52.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="sid-797626AE-B2F6-4C00-ABEE-FB30ADC177E4" id="BPMNEdge_sid-797626AE-B2F6-4C00-ABEE-FB30ADC177E4">
-        <omgdi:waypoint x="134.94999605081003" y="92.0"/>
-        <omgdi:waypoint x="187.0" y="92.0"/>
+        <omgdi:waypoint x="119.94999847917174" y="92.00000000000003"/>
+        <omgdi:waypoint x="164.6090597428185" y="92.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-C36474CC-A2ED-483C-AB90-C30EC3F6EA2B" id="BPMNEdge_sid-C36474CC-A2ED-483C-AB90-C30EC3F6EA2B">
-        <omgdi:waypoint x="470.0" y="131.95"/>
-        <omgdi:waypoint x="470.0" y="187.16666004392863"/>
-        <omgdi:waypoint x="550.4999781449644" y="187.16666004392863"/>
+        <omgdi:waypoint x="470.0" y="124.95"/>
+        <omgdi:waypoint x="470.0" y="185.0"/>
+        <omgdi:waypoint x="540.0" y="185.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-148771E1-795F-411A-8D80-9DDF9334A767" id="BPMNEdge_sid-148771E1-795F-411A-8D80-9DDF9334A767">
-        <omgdi:waypoint x="237.0" y="131.95"/>
-        <omgdi:waypoint x="237.0" y="187.16666004392863"/>
-        <omgdi:waypoint x="317.1666540834644" y="187.16666004392863"/>
+        <omgdi:waypoint x="264.559059742771" y="225.18519221067834"/>
+        <omgdi:waypoint x="315.0" y="225.18519221067834"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-3D27AD32-7989-411E-B5B0-2C8F9162C8D9" id="BPMNEdge_sid-3D27AD32-7989-411E-B5B0-2C8F9162C8D9">
-        <omgdi:waypoint x="699.9999741713216" y="131.95000000000005"/>
+        <omgdi:waypoint x="699.9999741713216" y="124.95000000000003"/>
         <omgdi:waypoint x="699.9999741713216" y="233.33332406150006"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-6D8FA2BA-579E-4571-B1DB-917226DCD1B0" id="BPMNEdge_sid-6D8FA2BA-579E-4571-B1DB-917226DCD1B0">
-        <omgdi:waypoint x="337.1666540834643" y="206.11199102273605"/>
-        <omgdi:waypoint x="337.1666540834644" y="389.9999860922501"/>
-        <omgdi:waypoint x="499.9999801317391" y="389.9999860922501"/>
+        <omgdi:waypoint x="335.0" y="245.1270768337117"/>
+        <omgdi:waypoint x="335.0" y="348.0"/>
+        <omgdi:waypoint x="509.99999999997596" y="348.4993232360645"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-66BD5542-29AB-4AEA-8FDE-104811FC4DDB" id="BPMNEdge_sid-66BD5542-29AB-4AEA-8FDE-104811FC4DDB">
+        <omgdi:waypoint x="560.0" y="204.94390809884402"/>
+        <omgdi:waypoint x="560.0" y="308.6419870177972"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="sid-1EECAB02-24A4-43BC-83B5-C17653E10431" id="BPMNEdge_sid-1EECAB02-24A4-43BC-83B5-C17653E10431">
+        <omgdi:waypoint x="214.60905974282514" y="131.95"/>
+        <omgdi:waypoint x="214.60905974282514" y="185.1851922106783"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-F5598F6E-6B76-461E-A080-092E79FFD303" id="BPMNEdge_sid-F5598F6E-6B76-461E-A080-092E79FFD303">
-        <omgdi:waypoint x="599.9499801317859" y="389.9999860922501"/>
-        <omgdi:waypoint x="699.9999741713216" y="389.9999860922501"/>
-        <omgdi:waypoint x="699.9999741713216" y="261.2832526194901"/>
+        <omgdi:waypoint x="609.9499999999983" y="348.4110564358558"/>
+        <omgdi:waypoint x="699.0" y="348.0"/>
+        <omgdi:waypoint x="699.8609116470886" y="261.2826501232276"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-CBF6DBDC-7939-4567-8C9D-740410E0CF16" id="BPMNEdge_sid-CBF6DBDC-7939-4567-8C9D-740410E0CF16">
-        <omgdi:waypoint x="570.4999781449644" y="167.16666004392863"/>
-        <omgdi:waypoint x="570.4999781449644" y="92.00000000000001"/>
-        <omgdi:waypoint x="649.9999741713216" y="92.00000000000003"/>
+        <omgdi:waypoint x="560.0" y="165.0"/>
+        <omgdi:waypoint x="560.0" y="85.0"/>
+        <omgdi:waypoint x="649.9999741712985" y="85.00000000000001"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-4D572F76-20B3-45F2-90E5-4B05D55FB148" id="BPMNEdge_sid-4D572F76-20B3-45F2-90E5-4B05D55FB148">
-        <omgdi:waypoint x="337.1666540834644" y="167.16666004392863"/>
-        <omgdi:waypoint x="337.1666540834644" y="92.0"/>
-        <omgdi:waypoint x="420.0" y="92.0"/>
+        <omgdi:waypoint x="335.0" y="205.18519221067834"/>
+        <omgdi:waypoint x="335.0" y="85.0"/>
+        <omgdi:waypoint x="420.0" y="85.0"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
