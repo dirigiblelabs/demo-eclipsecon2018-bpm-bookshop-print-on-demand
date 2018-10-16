@@ -1,1 +1,8 @@
-{"guid":"bookshop-print-on-demand","repository":{"type":"git","branch":"master","url":"https://github.com/dirigiblelabs/demo-eclipsecon2018-bpm.git"}}
+{
+	"guid": "bookshop-print-on-demand",
+  "repository": {
+    "type": "git",
+    "branch": "master",
+    "url": "https://github.com/dirigiblelabs/demo-eclipsecon2018-bpm-print-on-demand.git"
+ }
+}
