@@ -1,0 +1,5 @@
+{
+	"description": "Services perspective",
+	"extensionPoint": "launchpad-Bookshop-perspective",
+	"module": "bookshop-print-on-demand/ui/Services/extensions/perspective/perspective.js"
+}

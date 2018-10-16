@@ -5,7 +5,16 @@ var process = require('bpm/v3/process');
 rs.service()
 	.resource('')
 		.get(function(ctx, request, response) {
-			response.println(JSON.stringify(dao.list()));
+			var queryOptions = {};
+			var parameters = request.getParameterNames();
+			for (var i = 0; i < parameters.length; i ++) {
+				queryOptions[parameters[i]] = request.getParameter(parameters[i]);
+			}
+			response.println(JSON.stringify(dao.list(queryOptions)));
+		})
+	.resource('count')
+		.get(function(ctx, request, response) {
+			response.println(dao.count());
 		})
 	.resource('')
 		.post(function(ctx, request, response) {
