@@ -1,0 +1,5 @@
+{
+	"description": "Services menu",
+	"extensionPoint": "bookshop-menu",
+	"module": "bookshop-print-on-demand/ui/Services/public/extensions/menu/services.js"
+}

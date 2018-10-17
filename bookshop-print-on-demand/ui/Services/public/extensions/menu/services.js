@@ -8,15 +8,9 @@
  * SAP - initial API and implementation
  */
 
-var dao = require('bookshop-print-on-demand/data/dao/PrintRequests');
-
-exports.getTile = function(relativePath) {
+exports.getMenu = function() {
 	return {
-		'name': 'Print on Demand',
-		'group': 'Services',
-		'icon': 'print',
-		'location': relativePath + 'services/v3/web/bookshop-print-on-demand/ui/Services/index.html',
-		'count': dao.count(),
-		'order': '1'
+		'label': 'Services',
+		'uri': '/services/v3/web/bookshop-print-on-demand/ui/Services/public/index.html'
 	};
 };

@@ -13,7 +13,7 @@ angular.module('page')
 }])
 .controller('PageController', function ($scope, $http) {
 
-	var api = '../../../../../../../../services/v3/js/bookshop-print-on-demand/api/PrintingRequests.js';
+	var api = '../../../../../../../../../services/v3/js/bookshop-print-on-demand/api/PrintingRequests.js';
 
 	$scope.dateOptions = {
 		startingDay: 1

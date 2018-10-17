@@ -1,0 +1,5 @@
+{
+	"description": "Services tiles",
+	"extensionPoint": "launchpad-Bookshop-tiles",
+	"module": "bookshop-print-on-demand/ui/Services/admin/views/PrintOnDemand/extensions/tile/tile.js"
+}

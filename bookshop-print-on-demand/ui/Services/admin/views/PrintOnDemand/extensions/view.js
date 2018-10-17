@@ -15,6 +15,6 @@ exports.getView = function(relativePath) {
 		'label': 'Print on Demand',
 		'factory': 'frame',
 		// 'region': 'center-bottom',
-		'link': relativePath + 'services/v3/web/bookshop-print-on-demand/ui/Services/views/PrintOnDemand/index.html'
+		'link': relativePath + 'services/v3/web/bookshop-print-on-demand/ui/Services/admin/views/PrintOnDemand/index.html'
 	};
 };

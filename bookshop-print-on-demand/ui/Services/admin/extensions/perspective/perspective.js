@@ -12,7 +12,7 @@ exports.getPerspective = function(relativePath) {
 	return {
 		'name': 'Services',
 		'image': 'print',
-		'link': relativePath + 'services/v3/web/bookshop-print-on-demand/ui/Services/index.html',
+		'link': relativePath + 'services/v3/web/bookshop-print-on-demand/ui/Services/admin/index.html',
 		'order': 1,
 	};
 };
