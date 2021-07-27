@@ -1,6 +1,6 @@
-var rs = require('http/v3/rs');
+var rs = require('http/v4/rs');
 var dao = require('bookshop-print-on-demand/data/dao/PrintRequests');
-var process = require('bpm/v3/process');
+var process = require('bpm/v4/process');
 
 rs.service()
 	.resource('')
