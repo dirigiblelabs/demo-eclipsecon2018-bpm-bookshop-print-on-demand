@@ -1,4 +1,4 @@
-var process = require('bpm/v3/process');
+var process = require('bpm/v4/process');
 var dao = require('bookshop-print-on-demand/data/dao/PrintRequests');
 
 var execution = process.getExecutionContext();
